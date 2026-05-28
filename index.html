@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПИКСЕЛЬ — Компьютерная периферия и техника</title>
+    <title>ПИКСЕЛЬ — Экосистема Премиальной Периферии</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brandDark: '#0B1320',      /* Глубокий темный фон из твоего брендбука */
-                        brandCard: '#111C2E',      /* Полупрозрачный цвет карточек */
-                        brandBlue: '#3B9EFF',      /* Твой фирменный ярко-голубой цвет */
+                        brandDark: '#070C14',     /* Глубокий премиальный черный */
+                        brandCard: '#0E1726',     /* Цвет для стеклянных карточек */
+                        brandBlue: '#3B9EFF',     /* Фирменный ярко-голубой */
+                        brandElectric: '#00D2FF', /* Неоновый градиент-акцент */
                     }
                 }
             }
@@ -20,143 +21,227 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0B1320;
+            background-color: #070C14;
         }
-        /* Эффект Glassmorphism (матовое стекло) */
+        h1, h2, h3, .font-display {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        /* Креативная фоновая сетка */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        /* Премиальный Glassmorphism */
         .glass {
-            background: rgba(17, 28, 46, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(14, 23, 38, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .glass-nav {
-            background: rgba(11, 19, 32, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(7, 12, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Интерактивный трекер мыши для подсветки сетки */
+        #interactive-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 158, 255, 0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
     </style>
 </head>
-<body class="text-gray-200 antialiased selection:bg-brandBlue selection:text-white overflow-x-hidden">
+<body class="text-gray-200 antialiased selection:bg-brandBlue selection:text-white overflow-x-hidden bg-grid">
+
+    <div id="interactive-glow"></div>
 
     <header class="fixed top-0 left-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="logo.png" alt="ПИКСЕЛЬ" class="h-10 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logo-text-backup').style.display='block';">
-                <div id="logo-text-backup" style="display:none;" class="text-2xl font-bold tracking-wider text-white">
-                    П<span class="text-brandBlue">И</span>КСЕЛЬ
+        <div class="max-w-7xl mx-auto px-6 sm:px-12 h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group relative z-10">
+                <img src="logo.png" alt="ПИКСЕЛЬ" class="h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('logo-text-backup').style.display='flex';">
+                <div id="logo-text-backup" style="display:none;" class="text-2xl font-black tracking-tighter text-white font-display">
+                    P<span class="text-brandBlue">I</span>XEL
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-                <a href="#catalog" class="hover:text-white transition-colors">Каталог</a>
-                <a href="#setups" class="hover:text-white transition-colors">Сетапы</a>
-                <a href="#about" class="hover:text-white transition-colors">О бренде</a>
+            <nav class="hidden md:flex items-center gap-10 text-xs font-semibold tracking-widest uppercase text-gray-400">
+                <a href="#catalog" class="hover:text-brandBlue transition-colors relative">Каталог</a>
+                <a href="#catalog" class="hover:text-brandBlue transition-colors relative">Девайсы</a>
+                <a href="#setups" class="hover:text-brandBlue transition-colors relative">Сетапы</a>
             </nav>
 
-            <div class="flex items-center gap-4">
-                <button class="relative p-2.5 rounded-full hover:bg-white/5 transition-colors text-gray-300 hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <div class="flex items-center gap-4 relative z-10">
+                <button class="relative p-3 rounded-xl bg-white/5 border border-white/5 hover:border-brandBlue/30 hover:bg-brandDark text-gray-300 hover:text-white transition-all duration-300 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
-                    <span class="absolute top-1 right-1 w-2 h-2 bg-brandBlue rounded-full"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="pt-32 min-h-screen flex flex-col justify-between relative px-6 max-w-7xl mx-auto">
-        
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brandBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <section class="relative pt-44 pb-24 min-h-screen flex items-center justify-center overflow-hidden z-10 px-6">
+        <div class="parallax-bg absolute top-10 right-[-10%] w-[600px] h-[600px] bg-brandBlue/5 rounded-full blur-[150px] pointer-events-none" data-speed="-1"></div>
+        <div class="parallax-bg absolute bottom-0 left-[-5%] w-[400px] h-[400px] bg-brandElectric/5 rounded-full blur-[130px] pointer-events-none" data-speed="2"></div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-12 lg:pt-20 pb-16 relative z-10">
-            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandBlue/10 border border-brandBlue/20 text-brandBlue text-xs font-semibold tracking-wider uppercase">
-                    Премиальная периферия
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative">
+            <div class="lg:col-span-7 space-y-10 text-center lg:text-left parallax-bg" data-speed="1">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandBlue/10 border border-brandBlue/20 text-brandBlue text-xs font-bold uppercase tracking-widest">
+                    <span class="w-1.5 h-1.5 bg-brandBlue rounded-full animate-pulse"></span> Чистая эстетика перформанса
                 </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-                    Твой идеальный <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue to-blue-400">digital-сетап</span>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-[1.05]">
+                    Переосмысли <br>свой <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue via-brandElectric to-blue-400">рабочий стол</span>
                 </h1>
-                <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
-                    Чистый минимализм снаружи, сокрушительная мощность внутри. Инструменты для тех, кто создает будущее.
+                <p class="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    Минималистичные девайсы и высокотехнологичная периферия, разработанные для цифровой элиты. Ничего лишнего. Только фокус и совершенство.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                    <a href="#catalog" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brandBlue text-white font-medium hover:bg-blue-600 shadow-lg shadow-brandBlue/20 transition-all text-center">
-                        Исследовать каталог
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5 pt-4">
+                    <a href="#catalog" class="w-full sm:w-auto px-10 py-5 rounded-2xl bg-gradient-to-r from-brandBlue to-blue-600 text-white font-semibold hover:opacity-90 shadow-lg transition-all duration-300 text-center tracking-wide">
+                        Смотреть продукцию
                     </a>
                 </div>
             </div>
 
-            <div class="lg:col-span-5 flex justify-center">
-                <div class="w-full max-w-[400px] aspect-square rounded-3xl glass p-8 flex flex-col justify-between relative group hover:border-brandBlue/30 transition-all duration-500">
+            <div class="lg:col-span-5 flex justify-center parallax-bg" data-speed="3">
+                <div class="w-full max-w-[420px] aspect-[4/5] rounded-[32px] glass p-10 flex flex-col justify-between relative group shadow-2xl transition-all duration-500 hover:border-brandBlue/30">
                     <div class="flex justify-between items-start">
                         <div>
-                            <span class="text-xs text-brandBlue font-mono uppercase tracking-widest">Pixel Series</span>
-                            <h3 class="text-xl font-bold text-white mt-1">Mechanical Pro 75</h3>
+                            <span class="text-xs text-brandBlue font-mono uppercase tracking-widest font-bold">Флагман</span>
+                            <h3 class="text-2xl font-bold text-white mt-1">Pixel Cyber 75</h3>
                         </div>
-                        <span class="text-sm font-semibold text-brandBlue bg-brandBlue/10 px-2.5 py-1 rounded-md border border-brandBlue/20">NEW</span>
+                        <span class="text-xs font-black text-brandDark bg-brandBlue px-3 py-1.5 rounded-full">NEW</span>
                     </div>
-                    
-                    <div class="my-auto flex justify-center items-center h-48 relative">
-                        <div class="w-40 h-20 bg-gradient-to-r from-brandBlue/20 to-blue-500/20 rounded-xl border border-brandBlue/30 shadow-2xl rotate-[-12deg] group-hover:rotate-[-6deg] transition-transform duration-500 flex items-center justify-center">
-                            <span class="text-5xl font-bold text-brandBlue/40">P</span>
+
+                    <div class="my-auto relative flex justify-center items-center h-56 group">
+                        <div class="w-48 h-24 bg-gradient-to-br from-brandCard to-brandDark rounded-2xl border border-white/10 shadow-2xl transform rotate-[-14deg] skew-x-6 group-hover:rotate-[-6deg] group-hover:scale-105 transition-all duration-500 flex items-center justify-center overflow-hidden">
+                            <span class="text-6xl font-black text-brandBlue opacity-30">P</span>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center pt-4 border-t border-white/5">
-                        <span class="text-lg font-bold text-white">$149.00</span>
-                        <button class="px-4 py-2 rounded-lg bg-white/5 hover:bg-brandBlue hover:text-white text-sm font-medium transition-colors border border-white/10 hover:border-transparent">
-                            В корзину
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400 font-medium">Беспроводная механика</span>
+                            <span class="text-2xl font-black text-white font-display">$189.00</span>
+                        </div>
+                        <button class="w-full py-4 rounded-xl bg-white/5 hover:bg-brandBlue hover:text-white text-sm font-bold transition-all duration-300 border border-white/10 hover:border-transparent tracking-wide">
+                            Добавить в корзину
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <section id="catalog" class="py-16 border-t border-white/5 w-full">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass p-6 rounded-2xl relative overflow-hidden group hover:border-brandBlue/20 transition-colors">
-                    <h4 class="text-lg font-semibold text-white mb-2">Клавиатуры</h4>
-                    <p class="text-sm text-gray-400">Кастомная механика с идеальным тайпингом.</p>
-                    <div class="mt-8 text-xs text-brandBlue font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        Перейти в раздел <span>&rarr;</span>
+    <section id="catalog" class="py-32 relative z-20 max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Продуктовая линейка</h2>
+            <p class="text-gray-400 font-light">Каждый элемент спроектирован для достижения максимальной производительности.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="glass rounded-3xl p-6 flex flex-col justify-between group hover:border-brandBlue/30 transition-all duration-300">
+                <div class="relative rounded-2xl bg-brandDark/50 aspect-video mb-6 overflow-hidden flex items-center justify-center border border-white/5">
+                    <div class="w-16 h-16 rounded-xl bg-brandBlue/10 border border-brandBlue/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-brandBlue">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z" />
+                        </svg>
                     </div>
                 </div>
-                <div class="glass p-6 rounded-2xl relative overflow-hidden group hover:border-brandBlue/20 transition-colors">
-                    <h4 class="text-lg font-semibold text-white mb-2">Мыши</h4>
-                    <p class="text-sm text-gray-400">Бескомпромиссная точность и сверхлегкий вес.</p>
-                    <div class="mt-8 text-xs text-brandBlue font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        Перейти в раздел <span>&rarr;</span>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-lg font-bold text-white group-hover:text-brandBlue transition-colors">Pixel Apex Mouse</h3>
+                        <span class="text-lg font-black text-white">$89.00</span>
                     </div>
-                </div>
-                <div class="glass p-6 rounded-2xl relative overflow-hidden group hover:border-brandBlue/20 transition-colors sm:col-span-2 lg:col-span-1">
-                    <h4 class="text-lg font-semibold text-white mb-2">Аксессуары</h4>
-                    <p class="text-sm text-gray-400">Кабели, премиальные коврики и свет для стола.</p>
-                    <div class="mt-8 text-xs text-brandBlue font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        Перейти в раздел <span>&rarr;</span>
-                    </div>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Оптический сенсор 26K DPI, вес всего 49 грамм. Молниеносный отклик.</p>
+                    <button class="w-full mt-4 py-3 rounded-xl bg-brandDark border border-white/5 hover:border-brandBlue/40 text-xs font-semibold tracking-wider uppercase transition-all duration-300">Быстрый просмотр</button>
                 </div>
             </div>
-        </section>
 
-        <footer id="about" class="border-t border-white/5 py-12 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-gray-500">
-            <div>
-                <p>&copy; 2026 Компания «ПИКСЕЛЬ». Все права защищены.</p>
-                <p class="text-xs text-gray-600 mt-1">Продажа компьютерной периферии премиум-класса</p>
+            <div class="glass rounded-3xl p-6 flex flex-col justify-between group hover:border-brandBlue/30 transition-all duration-300">
+                <div class="relative rounded-2xl bg-brandDark/50 aspect-video mb-6 overflow-hidden flex items-center justify-center border border-white/5">
+                    <div class="w-16 h-16 rounded-xl bg-brandBlue/10 border border-brandBlue/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-brandBlue">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5h3m-6.75 3.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-15a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6v15a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-lg font-bold text-white group-hover:text-brandBlue transition-colors">Stream Monitor Light</h3>
+                        <span class="text-lg font-black text-white">$55.00</span>
+                    </div>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Умная световая панель с асимметричным дизайном. Защита ваших глаз.</p>
+                    <button class="w-full mt-4 py-3 rounded-xl bg-brandDark border border-white/5 hover:border-brandBlue/40 text-xs font-semibold tracking-wider uppercase transition-all duration-300">Быстрый просмотр</button>
+                </div>
             </div>
+
+            <div class="glass rounded-3xl p-6 flex flex-col justify-between group hover:border-brandBlue/30 transition-all duration-300">
+                <div class="relative rounded-2xl bg-brandDark/50 aspect-video mb-6 overflow-hidden flex items-center justify-center border border-white/5">
+                    <div class="w-16 h-16 rounded-xl bg-brandBlue/10 border border-brandBlue/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-brandBlue">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.03 6.03a3 3 0 0 0-4.242 4.243L10.5 19.5l8.712-8.728A3 3 0 0 0 14.97 6.03L12 9.03 9.03 6.03Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-lg font-bold text-white group-hover:text-brandBlue transition-colors">Pixel Desk Mat Pro</h3>
+                        <span class="text-lg font-black text-white">$39.00</span>
+                    </div>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Премиальный коврик из водоотталкивающей микрофибры.</p>
+                    <button class="w-full mt-4 py-3 rounded-xl bg-brandDark border border-white/5 hover:border-brandBlue/40 text-xs font-semibold tracking-wider uppercase transition-all duration-300">Быстрый просмотр</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about" class="relative z-20 max-w-7xl mx-auto px-6 py-16 flex flex-col sm:flex-row items-center justify-between gap-8 text-sm text-gray-500">
+        <div class="space-y-2 text-center sm:text-left">
+            <div class="text-white font-extrabold font-display tracking-wider text-lg">П<span class="text-brandBlue">И</span>КСЕЛЬ</div>
+            <p>&copy; 2026 Компания «ПИКСЕЛЬ». Все права защищены.</p>
+        </div>
+        
+        <div class="text-center sm:text-right border-t sm:border-t-0 sm:border-l border-white/10 pt-6 sm:pt-0 sm:pl-6">
+            <div class="text-xs uppercase tracking-widest text-gray-400 font-semibold font-display">Генеральный директор</div>
+            <div class="text-lg font-bold text-white mt-1 font-display">Аманов Ыслам</div>
+        </div>
+    </footer>
+
+    <script>
+        // Интерактивное следование подсветки за мышью
+        const glow = document.getElementById('interactive-glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Плавный скролл-параллакс
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
             
-            <div class="text-center sm:text-right border-l sm:border-l-0 sm:border-r border-white/10 pl-4 sm:pl-0 sm:pr-4">
-                <div class="text-xs uppercase tracking-wider text-gray-400 font-medium">Генеральный директор</div>
-                <div class="text-base font-semibold text-white mt-0.5">Аманов Ыслам</div>
-            </div>
-        </footer>
-
-    </main>
-
+            parallaxElements.forEach(el => {
+                const speed = el.getAttribute('data-speed') || 1;
+                const yPos = -(scrolled * speed / 15);
+                el.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
